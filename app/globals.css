@@ -42,6 +42,10 @@ html {
 
 .prose {
   @apply text-[#000000] dark:text-[#FFFFFF];
+  /* 한글 단어 단위 개행 */
+  word-break: keep-all;
+  /* 긴 단어가 넘칠 때 강제 개행 (가독성 향상) */
+  overflow-wrap: break-word;
 }
 
 .prose .anchor {

@@ -16,7 +16,7 @@ export default function Page() {
           priority
         />
       </a>
-      <h1 className="mb-8 text-2xl font-medium">사용자의 입장에서 공감하고 고민하는 개발자, 김민철입니다.</h1>
+      <h1 className="prose mb-8 text-2xl font-medium">사용자의 입장에서 공감하고 고민하는 개발자, 김민철입니다.</h1>
       <div className="prose prose-neutral dark:prose-invert">
         <p>
           안녕하세요! 다양한 기술 스택을 활용하여 사용자 경험을 최우선으로 생각하는 김민철입니다.
