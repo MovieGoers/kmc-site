@@ -1,0 +1,116 @@
+---
+title: "React의 useEffect 이해하기: 부수 효과와 클린업"
+publishedAt: "2025-07-05"
+summary: "React의 useEffect 훅이 무엇이며, 왜 필요한지, 그리고 클린업의 중요성에 대해 설명합니다."
+tags: "React, Hooks, useEffect, Web development"
+---
+
+React의 함수형 컴포넌트에서 자주 사용되는 `useEffect`는 **부수 효과(Side Effects)** 를 안전하게 처리할 수 있도록 도와주는 핵심 훅(Hook)입니다. 이 글에서는 `useEffect`가 필요한 이유, 사용 방법, 그리고 클린업(Cleanup)의 중요성에 대해 다뤄보겠습니다.
+
+## useEffect란 무엇인가요?
+
+'useEffect'는 컴포넌트가 **렌더링된 이후 실행되어야 하는 작업들**, 즉 **부수 효과(Side Effects)** 를 처리하기 위한 훅입니다.
+
+<Callout emoji="💡">
+쉽게 말해, 컴포넌트가 props와 state를 가지고 화면을 그린 "결과" 외에, 뭔가 "추가적인 행동"이 필요할 때 useEffect를 사용한다고 생각하시면 됩니다.  
+`useState`가 "무엇이 변했는가?"에 답한다면, `useEffect`는 "무엇이 변한 후에 어떤 행동을 할 것인가?"에 답하는 셈이죠.
+</Callout>
+
+## 부수 효과의 예시
+
+- 데이터 가져오기 (API fetch)
+- 웹소켓 또는 이벤트 리스너 구독
+- DOM 직접 조작 (라이브러리 연동 등)
+- 타이머 설정 (setTimeout, setInterval)
+- 로컬 스토리지, 애니메이션 라이브러리 등 외부 시스템과 동기화
+
+## useEffect의 기본 사용법
+
+```
+useEffect(() => {
+// setup 함수: 부수 효과 실행
+  return () => {
+    // cleanup 함수: 효과 해제
+  };
+}, [dependencies]);
+````
+
+### setup 함수
+
+컴포넌트가 렌더링된 직후 실행됩니다.
+데이터 요청, 이벤트 등록 등의 작업 수행
+**선택적으로 cleanup 함수를 return 할 수 있습니다.**
+
+### dependencies 배열
+
+* 특정 상태나 props가 변경될 때 `useEffect`를 다시 실행하게 만듭니다.
+* 배열 생략: 매 렌더링마다 실행됨
+* 빈 배열 `[]`: **최초 마운트 시 1회 실행**, 언마운트 시 클린업
+
+## 구독과 클린업의 중요성
+
+컴포넌트가 외부 시스템과 상호작용할 때는 항상 구독과 클린업을 **쌍으로** 생각해야 합니다. 그렇지 않으면 **메모리 누수(Memory Leak)** 와 예기치 않은 동작이 발생할 수 있습니다.
+
+### 예시: 채팅방 구독
+
+```
+useEffect(() => {
+  const chatApi = connectToChatRoom(roomId);
+  chatApi.onMessage(msg => console.log("새 메시지:", msg));
+  console.log(`채팅방 ${roomId} 구독 시작`);
+
+  return () => {
+    chatApi.disconnect();
+    console.log(`채팅방 ${roomId} 구독 해제`);
+  };
+}, [roomId]);
+```
+
+`roomId`가 바뀌면 이전 채팅방 구독을 **해제** 하고 새로운 구독을 **설정**
+컴포넌트 언마운트 시에도 구독 해제
+
+<Callout emoji="💡">
+클린업은 C 언어의 `malloc/free` 개념과 같습니다.  
+자원을 설정(setup)한 뒤, 사용이 끝나면 반드시 해제(cleanup)해야 시스템이 안정적으로 유지됩니다.
+</Callout>
+
+## 클린업이 실행되는 시점
+
+* 컴포넌트가 언마운트될 때
+* 의존성 배열의 값이 변경되어 useEffect가 **재실행되기 직전**
+
+## 타이머 클린업 예시
+
+```
+useEffect(() => {
+  console.log(`타이머 시작 (count: ${count})`);
+  const timerId = setInterval(() => {
+    console.log(`타이머 작동 중... count: ${count}`);
+  }, 1000);
+
+  return () => {
+    clearInterval(timerId);
+    console.log(`타이머 해제 (이전 count: ${count})`);
+  };
+}, [count]);
+```
+
+* `count`가 바뀔 때마다 이전 타이머 해제 → 새로운 타이머 설정
+* 마지막 타이머는 컴포넌트 언마운트 시 해제됨
+
+## 마무리
+
+`useEffect`는 React 컴포넌트가 UI 렌더링 외에도 다양한 외부 작업을 처리할 수 있게 해주는 훅입니다.
+그 핵심은 다음과 같습니다:
+
+* **렌더링 후 실행되는 부수 효과**
+* **구독 시에는 반드시 클린업을 작성**
+* **의존성 배열을 통해 실행 조건을 명시**
+
+React를 안정적으로 사용하기 위해서는 `useEffect`의 동작 시점과 클린업 타이밍을 명확하게 이해하는 것이 매우 중요합니다.
+
+---
+
+<Caption>
+이 글은 React 공식 문서 및 실무 경험을 바탕으로 작성되었으며, 메모리 누수와 클린한 컴포넌트 생명주기를 이해하고 싶은 개발자에게 도움이 되기를 바랍니다.
+</Caption>
