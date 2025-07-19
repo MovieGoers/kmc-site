@@ -41,7 +41,7 @@ export default function Page() {
 
         <h2 className="mt-8 text-xl font-medium">경력 및 교육</h2>
         <ul>
-          <li><strong>엔테크서비스(NTS) UI 개발 인턴 (2025.06 ~ 현재)</strong>
+          <li><strong>엔테크서비스(NTS) UI 개발 인턴 (2025.07 ~ 현재)</strong>
           </li>
             
           <li>
