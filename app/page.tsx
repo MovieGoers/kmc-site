@@ -28,19 +28,20 @@ export default function Page() {
           Unity Engine을 활용한 게임 개발 및 퍼블리싱 경험도 있습니다.
         </p>
         <p>
-          현재 HTML, CSS, 웹 표준, 웹 접근성에 대해서 심도 있는 학습을 진행하고 있습니다.
+          현재 HTML5, CSS3, 웹 표준, 웹 접근성에 대해서 심도 있는 학습을 진행하고 있습니다.
         </p>
         {/* 추가적인 섹션을 여기에 포함할 수 있습니다. 예를 들어, 핵심 역량, 경험, 수상 내역 등. */}
         
         <h2 className="mt-8 text-xl font-medium">주요 기술 스택</h2>
         <ul>
-          <li><strong>프론트엔드:</strong> HTML, CSS, React, Next.js, React Native, JavaScript, TypeScript, Vue.js</li>
+          <li><strong>프론트엔드:</strong> HTML5, CSS3, SCSS, Gulp, Task Runner, React, Next.js, React Native, JavaScript, TypeScript, Vue.js</li>
           <li><strong>백엔드:</strong> Java, Spring Boot, MyBatis, MySQL</li>
           <li><strong>기타:</strong> C, C++, Unity Engine</li>
         </ul>
 
         <h2 className="mt-8 text-xl font-medium">경력 및 교육</h2>
         <ul>
+          <li><strong>엔테크서비스(NTS) UI 개발 인턴 (2025.07 ~ 2025.09)</strong></li>
           <li>
             <strong>삼성 청년 SW 아카데미 12기 자바 전공반 1200시간 (2024.07 ~ 2025.06)</strong>
             <div className="text-sm">(Java, 알고리즘, SpringBoot, MySQL, Vue.js, React.js, React Native 학습 및 팀 프로젝트 진행)</div>
