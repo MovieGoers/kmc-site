@@ -42,8 +42,8 @@ export default function Page() {
         <h2 className="mt-8 text-xl font-medium">경력 및 교육</h2>
         <ul>
           <li>
-            <strong>엔테크서비스(NTS) UI 개발 인턴 (2025.07 ~ 2025.09)</strong>
-            <div className="text-sm">(Gulp Task Runner, SCSS, 웹 표준, 접근성 HTML5, CSS3 UI 개발)</div>
+            <strong>엔테크서비스(NTS) UIT 개발 (2025.07 ~ 현재)</strong>
+            <div className="text-sm">(Gulp Task Runner와 SCSS를 활용한 개발 환경 자동화 및 웹 표준·웹 접근성을 고려한 HTML5/CSS3 반응형 UI 구현)</div>
           </li>
           
           <li>
