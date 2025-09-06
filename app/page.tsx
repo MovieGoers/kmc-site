@@ -43,7 +43,7 @@ export default function Page() {
         <ul>
           <li>
             <strong>엔테크서비스(NTS) UIT 개발 (2025.07 ~ 현재)</strong>
-            <div className="text-sm">(Gulp Task Runner와 SCSS를 활용한 개발 환경 자동화 및 웹 표준·웹 접근성을 고려한 HTML5/CSS3 반응형 UI 구현)</div>
+            <div className="text-sm">(NAVER UI 개발)</div>
           </li>
           
           <li>
